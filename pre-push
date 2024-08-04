@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+if [ -f "package.json" ]; then
+    if bun run test; then
+        exit
+    fi
+fi
+
+exit 1
