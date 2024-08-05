@@ -6,5 +6,11 @@ if [ -z $FILES ]; then
     exit
 fi
 
-echo $FILES | xargs ./node_modules/.bin/prettier --ignore-unknown --write
-echo $FILES | xargs git add
+if [ -f "package.json" ]; then
+    if [ -f "bun.lockb" ]; then
+        PKGM=bun
+    fi
+
+    echo $FILES | xargs ${PKGM:-npm} run format --ignore-unknown --write
+    echo $FILES | xargs git add
+fi

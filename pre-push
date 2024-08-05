@@ -1,7 +1,11 @@
 #!/usr/bin/env sh
 
 if [ -f "package.json" ]; then
-    if bun run test; then
+    if [ -f "bun.lockb" ]; then
+        PKGM=bun
+    fi
+
+    if ${PKGM:-npm} run test; then
         exit
     fi
 fi
